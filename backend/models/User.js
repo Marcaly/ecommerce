@@ -14,7 +14,6 @@ class User extends Model{
         throw new Error(`Failed to create user: ${error.message}`);
     }
 };
-
 }
 
 User.init({
@@ -35,10 +34,18 @@ User.init({
     type: DataTypes.STRING,
     allowNull: false
   },
+  created_at: {
+    type: DataTypes.DATE,
+    defaultValue: DataTypes.NOW
+},
+  updated_at: {
+    type: DataTypes.DATE,
+    defaultValue: DataTypes.NOW
+  }
 }, {
   sequelize,
   modelName: 'User',
-  tableName: 'Users',
+  tableName: 'users',
   timestamps: false
 });
 
