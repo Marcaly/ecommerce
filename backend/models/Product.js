@@ -3,38 +3,31 @@ import createSequelizeInstance from '../config/database.js';
 
 const sequelize = createSequelizeInstance();
 
-class User extends Model{
+class Product extends Model{}
 
-  static async createUser(userData) {
-    try {
-        const newUser = await User.create(userData);
-        return newUser;
-    } catch (error) {
-        console.error('Error creating user:', error);
-        throw new Error(`Failed to create user: ${error.message}`);
-    }
-};
-}
-
-User.init({
-  user_id: {
+Product.init({
+  product_id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true
   },
-  first_name: {
+   name: {
     type: DataTypes.STRING,
     allowNull: false
   },
-  last_name: {
+  description: {
     type: DataTypes.STRING,
     allowNull: false
   },
-  password: {
-    type: DataTypes.STRING,
+  price: {
+    type: DataTypes.DOUBLE,
     allowNull: false
   },
-  email: {
+  stock: {
+    type: DataTypes.INTEGER,
+    allowNull: false
+  },
+  category: {
     type: DataTypes.STRING,
     allowNull: false
   },
@@ -48,9 +41,9 @@ User.init({
   }
 }, {
   sequelize,
-  modelName: 'User',
-  tableName: 'users',
+  modelName: 'Product',
+  tableName: 'products',
   timestamps: false
 });
 
-export default User;
+export default Product;

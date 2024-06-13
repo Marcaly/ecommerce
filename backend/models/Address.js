@@ -3,38 +3,27 @@ import createSequelizeInstance from '../config/database.js';
 
 const sequelize = createSequelizeInstance();
 
-class User extends Model{
+class Address extends Model{}
 
-  static async createUser(userData) {
-    try {
-        const newUser = await User.create(userData);
-        return newUser;
-    } catch (error) {
-        console.error('Error creating user:', error);
-        throw new Error(`Failed to create user: ${error.message}`);
-    }
-};
-}
-
-User.init({
-  user_id: {
+Address.init({
+  address_id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true
   },
-  first_name: {
+  city: {
     type: DataTypes.STRING,
     allowNull: false
   },
-  last_name: {
+  state: {
     type: DataTypes.STRING,
     allowNull: false
   },
-  password: {
+  country: {
     type: DataTypes.STRING,
     allowNull: false
   },
-  email: {
+  postal_code: {
     type: DataTypes.STRING,
     allowNull: false
   },
@@ -48,9 +37,9 @@ User.init({
   }
 }, {
   sequelize,
-  modelName: 'User',
-  tableName: 'users',
+  modelName: 'Address',
+  tableName: 'addresses',
   timestamps: false
 });
 
-export default User;
+export default Address;
